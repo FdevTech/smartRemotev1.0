@@ -44,14 +44,14 @@ if m > 0{
 for i := 0; i < m; i++ {
 exec.Command("sh","-c","irsend SEND_ONCE remoteC KEY_VOLUMEUP").Output()		
 time.Sleep(250* time.Millisecond)
-log.Println(i)
+
 
 }
 db3,_ := sql.Open("sqlite3", "/home/pi/gopath/src/github.com/paypal/gatt/examples/service/cerist.db")
 row3, _ := db3.Prepare("update values_ 	SET value = "+strconv.Itoa(Req)+"  WHERE id=1")
 row3.Exec()
 }else{
-println("rak tokhrote")
+
 }
 return gatt.StatusSuccess
 
@@ -82,7 +82,7 @@ if n > 0 {
 for i := 0; i < n; i++ {
 exec.Command("sh","-c","irsend SEND_ONCE remoteC KEY_VOLUMEDOWN").Output()
 time.Sleep(250* time.Millisecond)
-log.Println(i)
+
 
 
 }
@@ -138,27 +138,33 @@ for row.Next() {
 		temps = value
 	}
 println(temps)
-x=reqS-temps
+
 println(x)
-println("wache hsabt")
+
 
 log.Println("55fac9e0-c111-11e3-9246-0002a5d5c51b timer ")
 if reqS ==0 {
 	println("timer is off")
-}else if reqS==1{
+	reqS=1
+}else if reqS==15{
 
 	println("timer is 15 mns")
-} else if reqS==2{
+	reqS=2
+
+} else if reqS==30{
 
 	println("timer is 30 mns")
-} else if reqS==3 {
+	reqS=3
+} else if reqS==60 {
 
 	println("timer is 60 mns")
+	reqS=4
 } else {
 
 	println("timer is 90 mns ")
+	reqS=5
 }
-	
+x=reqS-temps	
 
 if x > 0 {
 		println("je suis la")
@@ -178,7 +184,7 @@ if x > 0 {
 		exec.Command("sh","-c","irsend SEND_ONCE remoteC KEY_DOWN").Output()
 		time.Sleep(500* time.Millisecond)
 
-		for i := 0; i < a; i++ {
+		for q := 0; q < a; q++ {
 			exec.Command("sh","-c","irsend SEND_ONCE remoteC KEY_RIGHT").Output()
 			time.Sleep(500* time.Millisecond)
 
@@ -203,7 +209,7 @@ if x > 0 {
 		exec.Command("sh","-c","irsend SEND_ONCE remoteC KEY_DOWN").Output()
 		time.Sleep(500* time.Millisecond)
 
-		for i := 0; i < b; i++ {
+		for e := 0; e < b; e++ {
 			exec.Command("sh","-c","irsend SEND_ONCE remoteC KEY_LEFT").Output()
 			time.Sleep(500* time.Millisecond)
 
@@ -211,8 +217,8 @@ if x > 0 {
 		}
 
 
-	}else {
-		println("rak tokhrete")
+	
+
 	}
 
 exec.Command("sh","-c","irsend SEND_ONCE remoteC KEY_BACK").Output()
